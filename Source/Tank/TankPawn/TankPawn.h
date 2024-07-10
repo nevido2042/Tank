@@ -6,6 +6,9 @@
 #include "GameFramework/Pawn.h"
 #include "TankPawn.generated.h"
 
+class USpringArmComponent;
+class UCameraComponent;
+
 UCLASS()
 class TANK_API ATankPawn : public APawn
 {
@@ -28,15 +31,23 @@ public:
 
 public:
 	USkeletalMeshComponent* GetMesh() { return SKMeshComp; }
-	FVector GetTargetLocation() { return TargetLocation; }
+	FVector GetTargetLocation() { return GunLookLocation; }
+	void CameraLineTrace();
 
+	UPROPERTY(EditAnywhere)
+	float GunPitchMin = -10.f;
+
+	UPROPERTY(EditAnywhere)
+	float GunPitchMax = 35.f;
 protected:
 	UPROPERTY(EditAnywhere)
 	USkeletalMeshComponent* SKMeshComp = nullptr;
 
+	FVector GunLookLocation;
+
 	UPROPERTY(EditAnywhere)
-	AActor* TargetActor = nullptr;
+	USpringArmComponent* SpringArm = nullptr;
 
-	FVector TargetLocation;
-
+	UPROPERTY(EditAnywhere)
+	UCameraComponent* FollowCamera = nullptr;
 };

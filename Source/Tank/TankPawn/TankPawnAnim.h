@@ -29,8 +29,4 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly)
 	FRotator GunJntRot;
-
-	UPROPERTY(BlueprintReadOnly)
-	FRotator DefaultGunJntRot;
-	
 };

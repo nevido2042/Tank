@@ -38,7 +38,6 @@ void UTankPawnAnim::AimToTarget()
 		FVector Direction = TargetLocation - GunJntLocation;
 		FVector Result = UKismetMathLibrary::InverseTransformDirection(PawnTransform, Direction);
 		GunJntRot = Result.Rotation();
+		GunJntRot.Pitch = FMath::ClampAngle(GunJntRot.Pitch, TankPawn->GunPitchMin, TankPawn->GunPitchMax);
 	}
-
-	DefaultGunJntRot = TankPawn->GetMesh()->GetSocketRotation(TEXT("gun_jnt"));
 }
