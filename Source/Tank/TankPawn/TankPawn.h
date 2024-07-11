@@ -9,6 +9,7 @@
 class USpringArmComponent;
 class UCameraComponent;
 class UBoxComponent;
+class UTankPawnMovementComponent;
 
 UCLASS()
 class TANK_API ATankPawn : public APawn
@@ -63,4 +64,7 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	UBoxComponent* BodyCollision = nullptr;
+
+	UPROPERTY(EditAnywhere)
+	UTankPawnMovementComponent* TankPawnMovementComponent = nullptr;
 };

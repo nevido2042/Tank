@@ -5,6 +5,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/BoxComponent.h"
+#include "TankPawn/TankPawnMovementComponent.h"
 
 // Sets default values
 ATankPawn::ATankPawn()
@@ -23,6 +24,8 @@ ATankPawn::ATankPawn()
 
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(SpringArm);
+
+	TankPawnMovementComponent = CreateDefaultSubobject<UTankPawnMovementComponent>(TEXT("TankPawnMovementComponent"));
 }
 
 // Called when the game starts or when spawned
