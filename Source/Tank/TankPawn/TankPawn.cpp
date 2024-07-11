@@ -58,6 +58,39 @@ void ATankPawn::CameraLineTrace()
 			GetWorld(),
 			LineStart,
 			HitResult.Location,
+			FColor::Green,
+			false, 0.1f, 0, 0.1f
+		);
+
+
+		DrawDebugSphere(
+			GetWorld(),
+			HitResult.Location,
+			12.0f,
+			24,
+			FColor::Green,
+			false, 0.1f
+		);
+	}
+}
+
+void ATankPawn::GunLineTrace()
+{
+	float LineLength = 9999999.f;
+	FVector LineStart = GetMesh()->GetSocketLocation(TEXT("gun_jnt"));
+	FVector LineEnd = LineStart + GetMesh()->GetSocketRotation(TEXT("gun_jnt")).Vector() * LineLength;
+	DrawDebugLine(GetWorld(), LineStart, LineEnd, FColor::Red);
+
+	FHitResult HitResult;
+	bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, LineStart, LineEnd, ECollisionChannel::ECC_Visibility);
+	if (bHit)
+	{
+		GunAimWorldLocation = HitResult.Location;
+
+		DrawDebugLine(
+			GetWorld(),
+			LineStart,
+			HitResult.Location,
 			FColor::Red,
 			false, 0.1f, 0, 0.1f
 		);

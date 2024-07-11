@@ -27,6 +27,7 @@ void UTankPawnAnim::AimToTarget(float DeltaSeconds)
 	const FTransform PawnTransform = TankPawn->GetActorTransform();
 
 	{
+		/*const FTransform Test = TankPawn->GetMesh()->GetSocketTransform(TEXT("turret_jnt"));*/
 		FVector TurretJntLocation = TankPawn->GetMesh()->GetSocketLocation(TEXT("turret_jnt"));
 		FVector Direction = TargetLocation - TurretJntLocation;
 		FVector Result = UKismetMathLibrary::InverseTransformDirection(PawnTransform, Direction);

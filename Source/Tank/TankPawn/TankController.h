@@ -16,7 +16,7 @@
  * 
  */
 class ATankPawn;
-
+class UUserWidget;
 UCLASS()
 class TANK_API ATankController : public APlayerController
 {
@@ -44,4 +44,10 @@ private:
 	void Look(const FInputActionValue& Value);
 
 	ATankPawn* TankPawn = nullptr;
+
+	//UPROPERTY(EditAnywhere)
+	//TSubclassOf<UUserWidget> GunAimAsset = nullptr;
+	//UUserWidget* GunAim = nullptr;
+
+	//void WidgetFollowGunAim();
 };
