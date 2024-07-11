@@ -4,6 +4,7 @@
 #include "TankPawn/TankPawn.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "Components/BoxComponent.h"
 
 // Sets default values
 ATankPawn::ATankPawn()
@@ -11,8 +12,11 @@ ATankPawn::ATankPawn()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	BodyCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("BodyCollision"));
+	SetRootComponent(BodyCollision);
+
 	SKMeshComp = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SKMeshComp"));
-	SetRootComponent(SKMeshComp);
+	SKMeshComp->SetupAttachment(BodyCollision);
 
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
 	SpringArm->SetupAttachment(SKMeshComp);
@@ -77,8 +81,8 @@ void ATankPawn::CameraLineTrace()
 void ATankPawn::GunLineTrace()
 {
 	float LineLength = 9999999.f;
-	FVector LineStart = GetMesh()->GetSocketLocation(TEXT("gun_jnt"));
-	FVector LineEnd = LineStart + GetMesh()->GetSocketRotation(TEXT("gun_jnt")).Vector() * LineLength;
+	FVector LineStart = GetMesh()->GetSocketLocation(TEXT("gun_1_jntSocket"));
+	FVector LineEnd = LineStart + GetMesh()->GetSocketRotation(TEXT("gun_1_jntSocket")).Vector() * LineLength;
 	DrawDebugLine(GetWorld(), LineStart, LineEnd, FColor::Red);
 
 	FHitResult HitResult;

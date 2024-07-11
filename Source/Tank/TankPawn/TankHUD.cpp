@@ -25,5 +25,5 @@ void ATankHUD::FollowGunAim()
 
     UGameplayStatics::ProjectWorldToScreen(GetOwningPlayerController(), WorldPos, ScreenPos);
 
-    DrawDebugCanvas2DCircle(Canvas, ScreenPos, 50.f, 100, FLinearColor::Green);
+    DrawDebugCanvas2DCircle(Canvas, ScreenPos, 20.f, 50, FLinearColor::Green);
 }
