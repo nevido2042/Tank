@@ -31,7 +31,7 @@ public:
 
 public:
 	USkeletalMeshComponent* GetMesh() { return SKMeshComp; }
-	FVector GetTargetLocation() { return GunLookLocation; }
+	FVector GetGunLookLocation() { return GunLookLocation; }
 	void CameraLineTrace();
 
 	UPROPERTY(EditAnywhere)
@@ -39,6 +39,12 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	float GunPitchMax = 35.f;
+
+	UPROPERTY(EditAnywhere)
+	float TurretRotateScale = 1.f;
+
+	UPROPERTY(EditAnywhere)
+	float GunUpDownScale = 0.5f;
 protected:
 	UPROPERTY(EditAnywhere)
 	USkeletalMeshComponent* SKMeshComp = nullptr;

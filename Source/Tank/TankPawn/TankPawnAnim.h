@@ -22,7 +22,7 @@ protected:
 
 	ATankPawn* TankPawn = nullptr;
 
-	void AimToTarget();
+	void AimToTarget(float DeltaSeconds);
 
 	UPROPERTY(BlueprintReadOnly)
 	FRotator TurretJntRot;
